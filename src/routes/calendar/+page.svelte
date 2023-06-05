@@ -9,13 +9,23 @@
   let availableDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   let selectedDay = availableDays[new Date(Date.now()).getDay()];
 
-  $: console.log(events);
+  let today = new Date();
+  let dDay = today.getDay() > 0 ? today.getDay() : 7;
+  let first = today.getDate() - dDay + 1;
+  let startOfWeek = new Date(today.setDate(first));
+  let endOfWeek = new Date(today.setDate(startOfWeek.getDate() + 6));
 
-  $: todaysEvents = events.filter((calEvent) => {
-    const eventDay = new Date(calEvent.start.dateTime).getDay();
+  $: todaysEvents = events
+    .filter((calEvent) => {
+      if (calEvent.status === "cancelled") {
+        return false;
+      }
 
-    return availableDays[eventDay] === selectedDay;
-  });
+      const eventDay = new Date(calEvent.start.dateTime).getDay();
+
+      return availableDays[eventDay] === selectedDay;
+    })
+    .sort((a, b) => new Date(a.start.dateTime) > new Date(b.start.dateTime));
 
   const setSelectedDay = (event) => {
     selectedDay = event.target.innerText;
@@ -23,7 +33,7 @@
 
   onMount(async () => {
     const result = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/${PUBLIC_CALENDAR_ID}/events?key=${PUBLIC_API_KEY}`,
+      `https://www.googleapis.com/calendar/v3/calendars/${PUBLIC_CALENDAR_ID}/events?timeMin=${startOfWeek.toISOString()}&timeMax=${endOfWeek.toISOString()}&singleEvents=true&key=${PUBLIC_API_KEY}`,
       {
         method: "GET",
         mode: "cors",
@@ -60,6 +70,7 @@
   .calendar {
     font-family: "Arial";
     max-width: 600px;
+    padding: 0px 40px 10px 40px;
   }
 
   ul {
@@ -72,6 +83,7 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
+    padding-bottom: 20px;
   }
 
   .day-selector button {
