@@ -25,24 +25,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
 		<link href="./_app/immutable/assets/3.3985fd0f.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.abc87982.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.d2a83e94.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index.c962d490.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.52af6541.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.5f5b29b7.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.3b7b20ac.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.39ab6ed0.js">
 		<link rel="modulepreload" href="./_app/immutable/nodes/0.4cdf7ac0.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/3.f26786ce.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.c64b7d58.js">
   </head>
   <body data-sveltekit-preload-data="hover">
     <div style="display: contents">
 
 
 <div class="calendar svelte-1x6l8wc"><ul class="days-list svelte-1x6l8wc"><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Sun</button>
-      </li><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Mon</button>
+      </li><li class="day-selector svelte-1x6l8wc selected"><button type="button" class="svelte-1x6l8wc">Mon</button>
       </li><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Tue</button>
       </li><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Wed</button>
       </li><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Thur</button>
       </li><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Fri</button>
-      </li><li class="day-selector svelte-1x6l8wc selected"><button type="button" class="svelte-1x6l8wc">Sat</button>
+      </li><li class="day-selector svelte-1x6l8wc"><button type="button" class="svelte-1x6l8wc">Sat</button>
       </li></ul>
   <div class="events"><p class="no-events svelte-1x6l8wc">No events today!</p></div>
 </div>
@@ -51,7 +51,7 @@
 			
 			<script>
 				{
-					__sveltekit_cg7q7l = {
+					__sveltekit_1ega3q2 = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						env: {"PUBLIC_CALENDAR_ID":"fb685ce350cd9a2fc99747ae935c0f3087f41aa2568d7c39b6229f6a8dbe2009@group.calendar.google.com","PUBLIC_API_KEY":"AIzaSyCch_C1MTw3cPsnAEeq4WdWGsBCrHbzXmU"}
 					};
@@ -61,8 +61,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.abc87982.js"),
-						import("./_app/immutable/entry/app.5f5b29b7.js")
+						import("./_app/immutable/entry/start.d2a83e94.js"),
+						import("./_app/immutable/entry/app.39ab6ed0.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
