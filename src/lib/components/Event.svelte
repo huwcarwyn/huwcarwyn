@@ -1,8 +1,13 @@
 <script>
+  import { PUBLIC_API_KEY } from "$env/static/public";
+
+  export let end;
+  export let start;
   export let summary;
   export let description;
-  export let start;
-  export let end;
+  export let attachments;
+
+  let imageUrl;
 
   $: friendlyStartDateString = new Date(start.dateTime).toLocaleTimeString(
     "en-US",
@@ -17,20 +22,30 @@
 
 <div class="event">
   <div class="event-details">
+    <div class="event-time">
+      {friendlyStartDateString} - {friendlyEndDateString}
+    </div>
     <h3 class="event-summary">{summary}</h3>
-    <span class="event-time"
-      >{friendlyStartDateString} - {friendlyEndDateString}</span
-    >
+
+    <p class="event-description">
+      {description || "No description available"}
+    </p>
   </div>
-  <p class="event-description">
-    {description || "No description available"}
-  </p>
+  {#if attachments?.length > 0}
+    <img
+      src={`https://www.googleapis.com/drive/v3/files/${attachments[0].fileId}?key=${PUBLIC_API_KEY}&alt=media`}
+      alt=""
+      class="attachment-image"
+    />
+  {/if}
 </div>
 
 <style>
   .event {
     padding: 20px 0;
     text-align: left;
+    display: flex;
+    flex-direction: row;
     border-bottom: 1px solid #2a7c6f;
   }
 
@@ -41,13 +56,15 @@
   .event-summary {
     margin: 0;
   }
-  .event-details {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+
+  .attachment-image {
+    margin-left: auto;
+    min-height: 100px;
+    max-height: 100px;
   }
 
   .event-time {
-    margin-left: auto;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 </style>
